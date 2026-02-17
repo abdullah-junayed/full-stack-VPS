@@ -6,16 +6,16 @@ app.use(express.json());
 app.use(
     cors({
         origin: [
-            'http://localhost:5173/',
             'http://localhost:5174/',
-            'http://localhost:3000/',
-            // add production URL here
+            'http://localhost:3000',
+            'http://localhost:5173/',
         ],
         credentials: true,
+        optionsSuccessStatus: 200,
     }),
 );
 
-app.get('/api/message', (req, res) => {
+app.get('/api/message', cors(), (req, res) => {
     res.json({ message: 'Hello from the backend!' });
 });
 
